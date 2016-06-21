@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Vereador;
+
+
 class CamaraController extends Controller
 {
     /**
@@ -15,8 +18,9 @@ class CamaraController extends Controller
      */
     public function index()
     {
-        return view('mostra');
-        
+        $vereadores = Vereador::all();
+        return view('projeto.index', ['vereadores' => $vereadores]);
+
     }
 
     /**
@@ -26,7 +30,7 @@ class CamaraController extends Controller
      */
     public function create()
     {
-        return "Criando um novo registro";
+        return view('projeto.formCriar');
     }
 
     /**
