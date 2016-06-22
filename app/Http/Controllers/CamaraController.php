@@ -41,7 +41,16 @@ class CamaraController extends Controller
      */
     public function store(Request $request)
     {
-        return "Persistindo no banco";
+        $dados = $request->all();
+        $novoVereador = new Vereador($dados);
+        $novoVereador->save();
+
+        return redirect()->action('CamaraController@index');
+
+    }
+
+    public function crono() {
+        return view('projeto.crono');
     }
 
     /**
@@ -52,7 +61,8 @@ class CamaraController extends Controller
      */
     public function show($id)
     {
-        //
+        $vereadores = Vereador::find($id);
+        return  view('projeto.descricao' , ['v' => $vereadores]);
     }
 
     /**
