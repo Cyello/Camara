@@ -1,0 +1,24 @@
+.table-hover > tbody > tr{
+	background-color: #6A5ACD;
+}
+
+
+.table-striped > tbody > tr{
+	background-color: #696969;
+
+}
+
+.navbar-tam {
+	height:100px;
+	background: ;
+}
+
+.principal{
+	padding-top: 100px;
+
+}
+
+.textof{
+	font-style: normal;
+	font-family: "inherit";
+}

@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Vereador;
+use App\Projeto;
+use App\Ver_Proj;
+use DB;
+
 
 
 class CamaraController extends Controller
@@ -18,8 +22,9 @@ class CamaraController extends Controller
      */
     public function index()
     {
-        $vereadores = Vereador::all();
-        return view('projeto.index', ['vereadores' => $vereadores]);
+        $vereadores = Vereador::all(); //Seleciona todods os vereadores
+        //return view('projeto.index', ['vereadores' => $vereadores]);
+        return view('projeto.index')->with('vereadores', $vereadores);
 
     }
 
@@ -49,8 +54,11 @@ class CamaraController extends Controller
 
     }
 
-    public function crono() {
-        return view('projeto.crono');
+    //Metodo para ocronometro de cada vereador
+    public function crono($id) {
+
+        $nome = Vereador::find($id);
+        return view('projeto.crono', ['nome' => $nome]);
     }
 
     /**
@@ -61,8 +69,15 @@ class CamaraController extends Controller
      */
     public function show($id)
     {
+
+        $projs = DB::select('select distinct p.nome, p.qtd_votos from vereador v, projetos p, ver_proj vp where
+            p.id = vp.id_proj and ? = vp.id_ver', [$id]);
+
         $vereadores = Vereador::find($id);
-        return  view('projeto.descricao' , ['v' => $vereadores]);
+
+        return  view('projeto.descricao' , ['v' => $vereadores, 'projs' => $projs]);  
+
+        
     }
 
     /**
@@ -73,7 +88,8 @@ class CamaraController extends Controller
      */
     public function edit($id)
     {
-        return "Editando o produto ".$id;
+        $vereador = Vereador::find($id);
+        return view('projeto.formEditar' , ['v' => $vereador]);
     }
 
     /**
@@ -85,7 +101,22 @@ class CamaraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return "Atualizando o produto ".$id;
+
+        $nome = $request->input('nome');
+        $idade = $request->input('idade');
+        $partido = $request->input('partido');
+        $mandatos = $request->input('mandatos');
+
+        $vereador = Vereador::find($id);
+        $vereador->nome = $nome; 
+        $vereador->idade = $idade; 
+        $vereador->partido = $partido; 
+        $vereador->mandatos = $mandatos; 
+
+
+        $vereador->save();
+
+        return redirect()->action('CamaraController@index');
     }
 
     /**
@@ -96,6 +127,18 @@ class CamaraController extends Controller
      */
     public function destroy($id)
     {
-        return "Deletando o produto ".$id;
+
+        //Primeiro é deletado a quele vereador na tabela ver_proj, pois o id do vereador é chave estrangeira do ver_proj
+         $deleted = DB::delete('delete from ver_proj where ? = id_ver', [$id]);  
+
+         //Depois o vereador pode ser exvluido
+         Vereador::destroy($id);
+
+         return redirect()
+                ->action('CamaraController@index');
+
+        //Pode ser feito da seguinte maneira
+        //$dado = Vereador::find($id);
+        //$dado->delete();
     }
 }

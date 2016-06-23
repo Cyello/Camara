@@ -8,5 +8,7 @@ class Vereador extends Model
 {
     protected $table = 'vereador';
 
-    protected $fillable = array('nome', 'idade' , 'mandatos', 'partido');
+
+    //Os parametros que podem ser passados para o construtor do vereador. ver metodo store da class CamaraContrroler
+    protected $fillable = array('nome', 'idade' , 'mandatos', 'partido'); 
 }
