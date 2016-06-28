@@ -33,7 +33,6 @@
 			<td>
 				@if(!empty($projs))
 					@foreach($projs as $p)
-					{{$p->id}}
 					<div class="alert-success">
 						<a href="/inicio/vereador/{{$v->id}}/projeto/{{$p->id}}">{{$p->nome}}</a>
 					</div>
