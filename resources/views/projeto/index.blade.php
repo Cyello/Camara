@@ -41,6 +41,11 @@
 		</tbody>
 	</table>
 
-	<a class="btn btn-default" href="{!!route('group.create')!!}"><span class="glyphicon glyphicon-plus"></span> vereador</a>  <!--Link para adicionar novo vereador-->
+	<a class="btn btn-default" href="{!!route('group.create')!!}">
+		<span class="glyphicon glyphicon-plus"></span> 
+		vereador
+	</a>  <!--Link para adicionar novo vereador-->
+
+	
 
 @stop

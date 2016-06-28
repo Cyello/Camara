@@ -25,5 +25,11 @@ Route::group(['as' => 'group.', 'prefix' => 'inicio'], function () {
     Route::post('/atualiza/{id}', ['as' => 'update', 'uses' => 'CamaraController@update']);
     Route::get('/remove/{id}', ['as' => 'destroy', 'uses' => 'CamaraController@destroy']);
     Route::get('/vereador/{id}', ['as' => 'show', 'uses' => 'CamaraController@show']);
-    Route::get('/cronometro/{id}', ['as' => 'crono', 'uses' => 'CamaraController@crono'] );
+    Route::get('/cronometro/{id}', ['as' => 'crono', 'uses' => 'CamaraController@crono']);
+    Route::get('/vereador/{id}/projeto/{id2}', ['as' => 'mostra', 'uses' => 'ProjetoController@show']);
 });
+
+
+	
+
+

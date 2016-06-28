@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" ng-app>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +17,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/JavaScript" src="{{asset('crono/js/jplayer/dist/jplayer/jquery.jplayer.min.js')}}"></script>
         <script type="text/JavaScript" src="{{asset('crono/js/default.js')}}"></script>
+        <script src="{{asset('angular.min.js')}}"></script>
      
   
 
@@ -38,10 +39,6 @@
       <h1 class="textof">Sistema Vereadores</h1>
 
       @yield('conteudo')
-
-
-    </div>
-    
 
     <!--
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

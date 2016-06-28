@@ -2,28 +2,56 @@
 
 @section('conteudo')
 
-	<h2 id="#nomev">{{$v->nome}}</h2>
-	<h3>Partido: {{$v->partido}}</h3> 
-	<h3>Idade: {{$v->idade}}</h3> 
-	<h3>Mandatos: {{$v->mandatos}}</h3> 
 
+	<h2>{{$v->nome}}</h2>
+	<table class="table">
+		<tr class="active">
+			<th>Partido</th>
+			<th>Idade</th>
+			<th>Mandatos</th>
+			<th>Projetos</th>
+		</tr>
+		<tr>
+			<td>
+				<div class="alert-success">
+					{{$v->partido}}
+				</div>
+			</td>
 
-	@if(!empty($projs))
-		@foreach($projs as $p)
-			<h3>{{$p->nome}}</h3>
-			<h3>{{$p->qtd_votos}} votos</h3>
-		@endforeach
-	@else
-		<h3>Esse vereador ainda não tem projetos</h3>
-	@endif
+			<td>
+				<div class="alert-success">
+					{{$v->idade}}
+				</div>
+			</td>
 
-		
+			<td>
+				<div class="alert-success">
+					{{$v->mandatos}}
+				</div>
+			</td>
+
+			<td>
+				@if(!empty($projs))
+					@foreach($projs as $p)
+					{{$p->id}}
+					<div class="alert-success">
+						<a href="/inicio/vereador/{{$v->id}}/projeto/{{$p->id}}">{{$p->nome}}</a>
+					</div>
+					<br>
+					@endforeach
+				@else
+					<div class="alert-danger">
+						Esse vereador ainda não tem projetos
+					</div>
+				@endif
+
+			</td>
+		</tr>
+	</table>
+
 	
+	<a href="{!! route('group.crono', $v->id) !!}" class="btn" >crono</a>  <!--Link para o cronometro de cada vereador-->
 
-	
-
-	<a href="{!! route('group.crono', $v->id) !!}">crono</a>  <!--Link para o cronometro de cada vereador-->
-
-	<a href="{!! route('group.index') !!}">Home</a><!-- Link para o inicio da pagina -->
+	<!--<a href="{!! route('group.index') !!}">Home</a> Link para o inicio da pagina -->
 
 @stop

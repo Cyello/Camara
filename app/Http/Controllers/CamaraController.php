@@ -69,12 +69,12 @@ class CamaraController extends Controller
      */
     public function show($id)
     {
-
-        $projs = DB::select('select distinct p.nome, p.qtd_votos from vereador v, projetos p, ver_proj vp where
-            p.id = vp.id_proj and ? = vp.id_ver', [$id]);
+        //nome dos  projetos
+        $projs = DB::select('select distinct p.id, p.nome from vereador v, projetos p, ver_proj vp where
+            p.id = vp.id_proj and ? = vp.id_ver and vp.id_ver = v.id', [$id]);
 
         $vereadores = Vereador::find($id);
-
+       
         return  view('projeto.descricao' , ['v' => $vereadores, 'projs' => $projs]);  
 
         

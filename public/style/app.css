@@ -20,5 +20,11 @@
 
 .textof{
 	font-style: normal;
-	font-family: "inherit";
+	font-family: "impact";
+}
+
+h2{
+	font-style: normal;
+	font-size: 25px;
+	font-family: "impact";
 }

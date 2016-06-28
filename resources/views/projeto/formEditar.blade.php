@@ -2,7 +2,7 @@
 
 @section('conteudo')
 	
-	<form role="form" action="{!! route('group.update', $v->id) !!}" method="post">
+	<form role="form" action="{!! route('group.update', $v->id) !!}" method="post" name="editForm">
 
 	  <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
 
@@ -26,7 +26,7 @@
 	    <input type="text" class="form-control" id="id_mandato" name="mandatos" value="{{$v->mandatos}}" placeholder="Mandatos">
 	  </div>
 
-	  <input class="btn btn-success" type="submit" value="Salvar">
+	  <input class="btn btn-defaut" type="submit" value="Salvar">
 		
 	 </form>
 
